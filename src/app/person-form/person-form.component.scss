@@ -1,0 +1,24 @@
+.container {
+  // background-color: #F8F9FA;
+  padding: .8rem;
+}
+
+.person-form {
+  display: flex;
+  flex-direction: row;
+}
+
+.person-form-submit-btn,
+.person-form-delete-btn {
+  width: 80px;
+  height: 20px;
+  margin: 0 0.4rem;
+}
+
+@media (max-width: 560px) {
+  .person-form {
+    // display: flex;
+    flex-direction: column;
+  }
+}
+

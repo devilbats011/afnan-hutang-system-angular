@@ -1,0 +1,9 @@
+[[plugins]]
+  package = "@netlify/plugin-replace"
+
+  [plugins.inputs]
+  replacements = [
+    { replace = "REPLACE_WITH_DB_NAME", with = "${DB_NAME}" },
+    { replace = "REPLACE_WITH_BASE_URL", with = "${BASE_URL}" },
+    { replace = "REPLACE_WITH_TOKEN", with = "${TOKEN}" }
+  ]

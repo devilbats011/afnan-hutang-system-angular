@@ -1,0 +1,50 @@
+<form [formGroup]="newHutangForm" (ngSubmit)="submitHutangForm()">
+  <div class="group-form" style="display: flex;flex-direction: column;">
+    <section *ngIf="authService.isAuthSuper().status === true">
+      <label for="createdBy">Hutang Under person:</label>
+      <select id='createdBy' formControlName='createdBy'>
+        <option *ngFor="let p of optionPersons()" [value]="p.name">
+          {{ p.name }}
+        </option>
+      </select>
+    </section>
+    <div>
+      <label for="pemberiHutang">Choose Person (Pemberi Hutang):</label>
+      <select appInputValidateRequired id='pemberiHutang' formControlName='pemberiHutang'>
+        <option *ngFor="let p of optionPersons()" [value]="p.name">
+          {{ p.name }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <label for="penerimaHutang"> Choose Person (Penerima Hutang): </label>
+      <select appInputValidateRequired id="penerimaHutang" formControlName="penerimaHutang">
+        <option *ngFor="let p of optionPersons()" [value]="p.name">
+          {{ p.name }}
+        </option>
+      </select>
+    </div>
+    <div *ngIf="typeForm === 'edit'">
+      <label for="status"> Status:</label>
+      <select appInputValidateRequired id='status' formControlName='status'>
+        <option *ngFor="let status of STATUS_LIST()" [value]="status" >
+          {{ status }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label for="hutangAmount"> Description </label>
+      <input appInputValidateRequired id="hutangAmount" formControlName="description" type="text">
+    </div>
+    <div>
+      <label for="location"> Location </label>
+      <input appInputValidateRequired id="location" formControlName="location" type="text">
+    </div>
+    <div>
+      <label for="hutangAmount"> Hutang Amount </label>
+      <input appInputValidateRequired id="hutangAmount" formControlName="hutangAmount" type="text">
+    </div>
+  </div>
+  <button type="submit" class="button">{{ submitButtonName }}</button>
+</form>

@@ -1,0 +1,26 @@
+<div>
+  <section >
+    <app-view-person [person]="person">
+    </app-view-person>
+  </section>
+  <section *ngIf="isHutangExist">
+    <div class="hutang-card" *ngFor="let hutang of hutangArray()">
+        <button (click)="personUtilServiceService.editOpenToggler(hutang, hutangArray)" class="btn-edit"  >
+          {{ hutang.isEditOpen ? 'Back' : 'Edit' }}
+        </button>
+        <div>
+          <button (click)="deleteHutang(hutang)" >
+            Delete
+          </button>
+        </div>
+        <div>
+          <div *ngIf="!hutang.isEditOpen ; else editForm">
+            <app-view-hutang [hutang]="hutang"></app-view-hutang>
+          </div>
+          <ng-template #editForm>
+            <app-edit-hutang [hutangExtends]="hutang"></app-edit-hutang>
+          </ng-template>
+        </div>
+    </div>
+  </section>
+</div>

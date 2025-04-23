@@ -1,0 +1,46 @@
+<main class="cld">
+  <section class="calendar-container">
+    <div class="nav-buttons">
+      <button (click)="changeYear(-1)">&#9665; Prev Year</button>
+      <button (click)="changeMonth(-1)">&#9665; Prev Month</button>
+      <span id="month-year"> {{ monthYear }} </span>
+      <button (click)="changeMonth(1)">Next Month &#9655;</button>
+      <button (click)="changeYear(1)">Next Year &#9655;</button>
+    </div>
+
+    <div class="calendar">
+      <div class="weekdays">
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+      </div>
+
+      <div class="days" id="calendar-days">
+        <div *ngFor="let dayJson of days" class="day" (click)="clickDay(dayJson)" [ngStyle]="{cursor: !this.arrayUtilitiesService.validateBasicArray(dayJson.arrayOfHutang)  ?  '': 'pointer'}" > {{ dayJson.day }}
+          <div *ngIf="this.arrayUtilitiesService.validateBasicArray(dayJson.arrayOfHutang)" [ngStyle]="{'background-color': dayJson.eventDetail.color, 'border-radius': '20rem', 'width': '.4rem', 'height': '.4rem', 'padding': '0.2rem'}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top: 2rem;">
+    <div class="hutang-card" *ngFor="let hutang of showHutangsWhenClickDay()">
+        <button (click)="personUtilServiceService.editOpenToggler(hutang, showHutangsWhenClickDay)" class="btn-edit"  >
+          {{ hutang.isEditOpen ? 'Back' : 'Edit' }}
+        </button>
+        <div>
+          <div *ngIf="!hutang.isEditOpen ; else editForm">
+            <app-view-hutang [hutang]="hutang"></app-view-hutang>
+          </div>
+          <ng-template #editForm>
+            <app-edit-hutang [hutangExtends]="hutang"></app-edit-hutang>
+          </ng-template>
+        </div>
+    </div>
+  </section>
+</main>

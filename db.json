@@ -1,0 +1,93 @@
+{
+  "people": [
+    {
+      "id": "de6b4c39-73c1-4b3d-856d-718dc6a629fa",
+      "name": "wanxxzz",
+      "createdBy": "wan"
+    },
+    {
+      "id": "bfbe38ec-5583-4b4a-ac05-c7c8e1ae4e50",
+      "name": "garelli",
+      "createdBy": "super"
+    },
+    {
+      "id": "a8666f47-2ef5-48ce-80ed-5164457d5c19",
+      "name": "karel",
+      "createdBy": "super"
+    },
+    {
+      "id": "0ed51555-8bfe-44b0-8a95-e47ace6a87c5",
+      "name": "wakel",
+      "createdBy": "super"
+    },
+    {
+      "id": "3ddfc399-0314-47ad-82ab-4ac7835a9808",
+      "name": "xawel",
+      "createdBy": "super"
+    },
+    {
+      "id": "76c1ef03-34ed-4fc3-8393-32a26331b3fe",
+      "name": "qakel",
+      "createdBy": "super"
+    },
+    {
+      "id": "21fa82bc-bddc-4ef6-a02f-412c1abe763b",
+      "name": "erwal",
+      "createdBy": "super"
+    }
+  ],
+  "hutang": [
+    {
+      "id": "c11627",
+      "status": "active",
+      "pemberiHutang": "wan",
+      "penerimaHutang": "karel",
+      "hutangAmount": "13.50",
+      "description": "Burger Kaw2 Ayam Cheese",
+      "location": "Seksyen 7",
+      "date": "2025-03-13T08:00:00.000Z",
+      "jsonDate": {
+        "day": 13,
+        "month": 3,
+        "year": 2025,
+        "timezone": 8
+      },
+      "createdBy": "super",
+      "updatedBy": null,
+      "createdAt": "2025-04-13T08:00:00.000Z",
+      "updatedAt": null,
+      "jsonDateCreatedBy": {
+        "day": 13,
+        "month": 4,
+        "year": 2025,
+        "timezone": 8
+      }
+    },
+    {
+      "id": "c12627",
+      "status": "paid",
+      "pemberiHutang": "garelli",
+      "penerimaHutang": "karel",
+      "hutangAmount": "13.50",
+      "description": "Burger Kaw2 Ayam Cheese",
+      "location": "Seksyen 7",
+      "date": "2025-03-13T08:00:00.000Z",
+      "jsonDate": {
+        "day": 13,
+        "month": 3,
+        "year": 2025,
+        "timezone": 8
+      },
+      "createdBy": "super",
+      "updatedBy": null,
+      "createdAt": "2025-04-13T08:00:00.000Z",
+      "updatedAt": null,
+      "jsonDateCreatedBy": {
+        "day": 13,
+        "month": 4,
+        "year": 2025,
+        "timezone": 8
+      }
+    }
+  ]
+}

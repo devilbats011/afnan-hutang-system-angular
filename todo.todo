@@ -1,0 +1,7 @@
+
+
+// test .env server : i will use netlify...
+
+//TODO: Upload to server
+
+//TODO: unit test service - ng test --include src/app/auth.service.spec.ts ... okey laa tuu tahu sikit2..well done!! ..do it graduately!
