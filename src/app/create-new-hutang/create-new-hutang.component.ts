@@ -7,6 +7,7 @@ import { StatusHutangService } from '../services/status-hutang.service';
 import { AuthService } from '../auth.service';
 import { HutangFormComponent } from "../hutang-form/hutang-form.component";
 import { StateManagementService } from '../services/state-management.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-new-hutang',
@@ -27,6 +28,7 @@ export class CreateNewHutangComponent {
   restApiService = inject(RestApiService);
   authService = inject(AuthService);
   stateManagementService = inject(StateManagementService);
+  toaster = inject(ToastrService);
 
   url = 'https://electric-humpback-57856.upstash.io';
   token = 'AeIAAAIjcDE0NDEzNWRhYjIzZGQ0YWUxYWJjYWMwMWZjMTBhODZhMHAxMA';
@@ -53,22 +55,33 @@ export class CreateNewHutangComponent {
     hutangAmount: new FormControl(''),
     description: new FormControl(''),
     location: new FormControl(''),
-    date: new FormControl(''),
+    date: new FormControl<string | null>(''),
   });
 
   ngOnInit() {
-    if (this.authService.isAuthSuper().status) {
-      this.newHutangForm.get('createdBy')?.setValue('super');
-    }
+    this.newHutangForm.get('createdBy')?.setValue(this.stateManagementService.getName());
+    const now = new Date().toISOString();
+    this.newHutangForm.get('date')?.setValue(now);
   }
 
   submitForm(hutangForm: PartialHutangForm) {
-    console.log('new-hutang-submitForm-', hutangForm);
+    if(this.newHutangForm.errors) {
+      console.log(this.newHutangForm.errors, this.newHutangForm.invalid);
+     this.toaster.error('All field required.', 'Invalid Form');
+     return;
+    }
+
     if (!hutangForm) {
+      this.toaster.error('', 'Error');
       console.error('hutangForm is undefined');
       return;
     }
+
     this.restApiService.submitNewHutangForm(hutangForm);
+    this.toaster.success('Hutang created.');
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   }
 
 }

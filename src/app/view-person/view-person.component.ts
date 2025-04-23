@@ -19,7 +19,7 @@ import { EditPersonComponent } from "../edit-person/edit-person.component";
       <app-edit-person [person]="person" > </app-edit-person>
       </ng-template>
       <button (click)="editToggler()" class="btn-edit" *ngIf="this.stringUtilService.compareTwoStringsIgnoreCase(person.name , this.authService.SUPER)  ? false : true">
-        {{ isEditOpen() ? 'Back' : 'Edit' }}
+        {{ isEditOpen() ? 'Back' : 'Delete' }}
       </button>
     </div>
   `,

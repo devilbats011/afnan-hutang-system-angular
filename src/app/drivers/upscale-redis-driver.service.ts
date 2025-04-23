@@ -188,7 +188,7 @@ export class UpscaleRedisDriverService implements ApiDriver {
       id: crypto.randomUUID(),
       hutangAmount: newHutangForm?.hutangAmount,
       pemberiHutang: newHutangForm?.pemberiHutang,
-      penerimaHutang: newHutangForm?.pemberiHutang,
+      penerimaHutang: newHutangForm?.penerimaHutang,
       description: newHutangForm?.description,
       location: newHutangForm?.location,
       updatedAt: newHutangForm?.updatedAt,
@@ -254,7 +254,7 @@ export class UpscaleRedisDriverService implements ApiDriver {
     const valuesData = await hutangValuesResponse.json();
     const allHutangArrayRaw: any[] = valuesData.result;
     const allHutangArray: HutangForm[] = allHutangArrayRaw.map(v => JSON.parse(v));
-    return allHutangArray.filter(v => v.createdBy === name);
+    return allHutangArray.filter(v => v.pemberiHutang === name);
 
   }
 

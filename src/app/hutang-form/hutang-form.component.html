@@ -1,13 +1,13 @@
 <form [formGroup]="newHutangForm" (ngSubmit)="submitHutangForm()">
   <div class="group-form" style="display: flex;flex-direction: column;">
-    <section *ngIf="authService.isAuthSuper().status === true">
+    <!-- <section *ngIf="authService.isAuthSuper().status === true">
       <label for="createdBy">Hutang Under person:</label>
       <select id='createdBy' formControlName='createdBy'>
         <option *ngFor="let p of optionPersons()" [value]="p.name">
           {{ p.name }}
         </option>
       </select>
-    </section>
+    </section> -->
     <div>
       <label for="pemberiHutang">Choose Person (Pemberi Hutang):</label>
       <select appInputValidateRequired id='pemberiHutang' formControlName='pemberiHutang'>

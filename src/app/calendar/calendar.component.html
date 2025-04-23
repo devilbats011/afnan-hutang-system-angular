@@ -20,8 +20,13 @@
       </div>
 
       <div class="days" id="calendar-days">
-        <div *ngFor="let dayJson of days" class="day" (click)="clickDay(dayJson)" [ngStyle]="{cursor: !this.arrayUtilitiesService.validateBasicArray(dayJson.arrayOfHutang)  ?  '': 'pointer'}" > {{ dayJson.day }}
-          <div *ngIf="this.arrayUtilitiesService.validateBasicArray(dayJson.arrayOfHutang)" [ngStyle]="{'background-color': dayJson.eventDetail.color, 'border-radius': '20rem', 'width': '.4rem', 'height': '.4rem', 'padding': '0.2rem'}">
+        <div *ngFor="let dayJson of days" class="day" (click)="clickDay(dayJson)" [ngStyle]="
+          !this.arrayUtilitiesService.validateBasicArray(dayJson.arrayOfHutang) ? {} : {
+            cursor: 'pointer',
+            backgroundColor: this.clickDaybackgroundColor
+          }"> {{ dayJson.day }}
+          <div *ngIf="this.arrayUtilitiesService.validateBasicArray(dayJson.arrayOfHutang)"
+            [ngStyle]="{'background-color': dayJson.eventDetail.color, 'border-radius': '20rem', 'width': '.4rem', 'height': '.4rem', 'padding': '0.2rem'}">
           </div>
         </div>
       </div>
@@ -29,18 +34,25 @@
   </section>
 
   <section style="margin-top: 2rem;">
-    <div class="hutang-card" *ngFor="let hutang of showHutangsWhenClickDay()">
-        <button (click)="personUtilServiceService.editOpenToggler(hutang, showHutangsWhenClickDay)" class="btn-edit"  >
-          {{ hutang.isEditOpen ? 'Back' : 'Edit' }}
-        </button>
-        <div>
-          <div *ngIf="!hutang.isEditOpen ; else editForm">
-            <app-view-hutang [hutang]="hutang"></app-view-hutang>
-          </div>
-          <ng-template #editForm>
-            <app-edit-hutang [hutangExtends]="hutang"></app-edit-hutang>
-          </ng-template>
+    <div class="hutang-card" *ngFor="let hutang of showHutangsWhenClickDay()"
+      style="margin: 1rem 0rem;border-bottom: 1px solid #ddddddaf;">
+      <button (click)="personUtilServiceService.editOpenToggler(hutang, showHutangsWhenClickDay)" class="btn-edit">
+        {{ hutang.isEditOpen ? 'Back' : 'Edit' }}
+      </button>
+      <div>
+        <div *ngIf="!hutang.isEditOpen ; else editForm">
+          <app-view-hutang [hutang]="hutang"></app-view-hutang>
         </div>
+        <ng-template #editForm>
+          <div style="padding: .5rem 0rem;">
+            <button (click)="deleteHutang(hutang)">
+              Delete
+            </button>
+          </div>
+
+          <app-edit-hutang [hutangExtends]="hutang"></app-edit-hutang>
+        </ng-template>
+      </div>
     </div>
   </section>
 </main>

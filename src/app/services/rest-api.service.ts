@@ -57,6 +57,6 @@ export class RestApiService {
     const people = await this.getDBDriver().fetchPeopleNoAuth();
     const ppl = this.authService.addSuperPersonHandler(people);
     if (this.authService.isAuthSuper().status) return ppl;
-    return ppl.filter(p => p.name === this.authService.SUPER || p.createdBy === this.state.getName());
+    return ppl.filter(p =>  p.createdBy === this.state.getName() || p.name == this.state.getName());
   }
 }

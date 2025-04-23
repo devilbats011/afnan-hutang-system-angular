@@ -24,7 +24,7 @@ export class HutangFormComponent {
 
   STATUS_LIST = signal<any[]>(StatusHutangService.STATUS_LIST);
 
-  @Input() genericHutang! : HutangFormExtends | HutangForm | undefined | null ;
+  @Input() genericHutang!: HutangFormExtends | HutangForm | undefined | null;
   @Input() submitButtonName: string = "Submit";
   @Input() typeForm!: 'edit' | 'create';
 
@@ -55,14 +55,10 @@ export class HutangFormComponent {
 
   ngOnInit() {
     this.initInjectDataToGenericHutang();
-    if (this.authService.isAuthSuper().status) {
-      this.newHutangForm.get('createdBy')?.setValue('super');
-
-    }
   }
 
   initInjectDataToGenericHutang() {
-    if(this.genericHutang) {
+    if (this.genericHutang) {
       this.newHutangForm.get('pemberiHutang')?.setValue(this.genericHutang.pemberiHutang);
       this.newHutangForm.get('penerimaHutang')?.setValue(this.genericHutang.penerimaHutang);
       this.newHutangForm.get('hutangAmount')?.setValue(this.genericHutang.hutangAmount);
@@ -71,6 +67,9 @@ export class HutangFormComponent {
       this.newHutangForm.get('location')?.setValue(this.genericHutang.location);
       this.newHutangForm.get('date')?.setValue(this.genericHutang.date);
       this.newHutangForm.get('createdBy')?.setValue(this.genericHutang.createdBy);
+      // if (this.authService.isAuthSuper().status) {
+      this.newHutangForm.get('createdBy')?.setValue(this.stateManagementService.getName());
+      // }
 
     }
   }

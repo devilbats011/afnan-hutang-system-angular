@@ -10,6 +10,7 @@ import { ViewHutangComponent } from "../view-hutang/view-hutang.component";
 import { CalendarUtilService } from '../calendar-utilities/calendar-util.service';
 import { EditHutangComponent } from "../edit-hutang/edit-hutang.component";
 import { PersonUtilServiceService } from '../person/person-util-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class CalendarComponent {
   restApiService = inject(RestApiService);
   calendarUtilService = inject(CalendarUtilService);
   personUtilServiceService = inject(PersonUtilServiceService);
+  toaster = inject(ToastrService);
+
 
 
   protected days: day[] = [];
@@ -109,12 +112,35 @@ export class CalendarComponent {
 
   constructor(private router: Router) { }
 
-  clickDay(dayJson : day) {
+  clickDaybackgroundColor = 'transparent';
+
+  clickDay(dayJson: day) {
+
     if (this.arrayUtilitiesService.validateBasicArray(dayJson.arrayOfHutang)) {
       this.showHutangsWhenClickDay.set(dayJson.arrayOfHutang.map(hutang => ({ ...hutang, isEditOpen: false })));
+      this.clickDaybackgroundColor = '#dee';
     } else {
+      this.clickDaybackgroundColor = 'transparent';
       this.showHutangsWhenClickDay.set([]);
     }
 
   }
+
+  async deleteHutang(hutang: HutangFormExtends) {
+    if (!hutang.id) {
+      this.toaster.error('Ops,something went wrong', 'Hutang Undefined')
+      return;
+    }
+    if (confirm("Are you sure you want to delete this hutang?")) {
+      const isDelete = await this.restApiService.getDBDriver()?.deleteHutang(hutang.id);
+      if (isDelete) {
+        this.hutangArray.update(hArray => hArray.filter(h => h.id !== hutang.id));
+        this.toaster.success('', 'Hutang Deleted');
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      }
+    }
+  }
+
 }

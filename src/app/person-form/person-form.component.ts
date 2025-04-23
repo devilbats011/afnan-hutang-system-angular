@@ -19,16 +19,19 @@ import { PeopleUtilService } from '../people/people-utilities/people-util.servic
   <div class="container" >
     <form [formGroup]="formPerson" (submit)="submitPersonForm()" class="person-form">
 
-      <div class="group-form">
+      <div class="group-form"
+
+      >
         <label for="name"
           *ngIf="isLabelName"
          > Name </label>
         <input id="name" type="text" formControlName="name"
+          [readonly]="typeForm === 'edit' && true"
           appInputValidateRequired
           [placeholder]="(person && person.name) ?  person.name : ''"
         >
       </div>
-      <button type="submit" class="person-form-submit-btn"> {{ submitButtonName }} </button>
+      <button  *ngIf="typeForm === 'create'" type="submit" class="person-form-submit-btn"> {{ submitButtonName }} </button>
       <div *ngIf="typeForm === 'edit'" >
         <button type="button" class="person-form-delete-btn" (click)="deletePerson()" > Delete </button>
       </div>
@@ -82,7 +85,7 @@ export class PersonFormComponent implements OnInit {
   private typeFormProvider: { [key: string]: { deletePerson?: () => Promise<void> } } = {
     edit: {
       deletePerson: async () => {
-        if(!confirm('Are you sure?')) {
+        if (!confirm('Are you sure?')) {
           return;
         }
 
@@ -93,7 +96,7 @@ export class PersonFormComponent implements OnInit {
         }
         const isDelete = await this.restApiService.getDBDriver()?.deletePerson(this.person.id);
 
-        if(isDelete) {
+        if (isDelete) {
           this.peopleService.people.update((people) => people.filter(person => person.id !== this.person.id));
           this.toastr.warning("", 'User deleted');
         }
