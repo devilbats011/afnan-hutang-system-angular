@@ -101,6 +101,14 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/afnan-hutang-system-angular-forntend",
+            "netlifyToken": "nfp_7SdkYZUbvCnMHXL27JuWiHTozDC3rfia3052",
+            "siteId": ""
+          }
         }
       }
     }

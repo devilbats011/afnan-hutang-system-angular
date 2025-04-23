@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build:ssr"
+  publish = "dist/afnan-hutang-system-angular-frontend/browser"
+
+[[redirects]]
+  from = "/{any}"
+  to = "/index.html"
+  status = 200
+  force = true

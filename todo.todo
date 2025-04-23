@@ -1,6 +1,11 @@
 
+npm install @netlify/angular-runtime@2.2.0
+
 
 // test .env server : i will use netlify...
+
+ personal access token
+nfp_7SdkYZUbvCnMHXL27JuWiHTozDC3rfia3052
 
 //TODO: Upload to server
 
