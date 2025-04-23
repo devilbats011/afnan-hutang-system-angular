@@ -1,5 +1,5 @@
 {
-  "name": "afnan-hutang-system-angular-forntend",
+  "name": "afnan-hutang-system-angular-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:afnan-hutang-system-angular-forntend": "node dist/afnan-hutang-system-angular-forntend/server/server.mjs"
+    "serve:ssr": "node dist/afnan-hutang-system-angular-forntend/server/server.mjs"
   },
   "private": true,
   "dependencies": {

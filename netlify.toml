@@ -1,6 +1,6 @@
 [build]
   command = "npm run build:ssr"
-  publish = "dist/afnan-hutang-system-angular-frontend/browser"
+  publish = "dist/afnan-hutang-system-angular-forntend/browser"
 
 [[redirects]]
   from = "/{any}"
